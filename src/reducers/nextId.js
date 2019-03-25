@@ -1,10 +1,12 @@
 const nextId = (state = 0, action) => {
-  switch (action.typ) {
+  switch (action.type) {
     case 'INC_ID':
-      return state + 1
+      return state + 1;
     default:
       return state 
   }
 }
 
 export default nextId; 
+
+

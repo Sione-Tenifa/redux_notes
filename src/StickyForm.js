@@ -6,16 +6,18 @@ class StickyForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { dispatch,} = this.props;
+    const { id, dispatch,} = this.props;
     const { name, } = this.state;
-    dispatch({ type: 'ADD_NOTE', note: name, })
+    const note = { name, id, complete: false, }
+    dispatch({ type: 'ADD_NOTE', note })
+    dispatch({ type: 'INC_ID'})
     this.setState({ name: '', }) 
   }
 
   handleChange =(e) => {
     this.setState({name: e.target.value })
   }
-  
+
   render(){
     const { name, } = this.state
 
@@ -30,4 +32,8 @@ class StickyForm extends React.Component {
   }
 }
 
-export default connect()(StickyForm)
+const mapStateToProps = (state) => {
+  return { id: state.nextId, }
+}
+
+export default connect(mapStateToProps)(StickyForm)

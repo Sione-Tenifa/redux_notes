@@ -1,15 +1,13 @@
 import React from 'react'
 import { connect, } from 'react-redux'
+import Note from './Note'
+import { Button, Card, Header, } from "semantic-ui-react";
 
 const StickyList = ({notes}) => (
   <ul>
-    { notes.map( (t,i)=> {
-
-        return (
-          <li key={i}>
-              {t}
-            </li>
-        )
+    { 
+      notes.map( (t) => {
+        return ( <Note key={t.id} {...t} /> )
       })
     }
   </ul>

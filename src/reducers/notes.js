@@ -4,6 +4,12 @@ const notes = ( state = [], action) => {
       return action.notes
     case 'ADD_NOTE':
       return [action.note, ...state]
+      case 'TOGGLE_NOTE':
+      return state.map( note => {
+        if (note.id === action.id)
+          return {...note, complete: !note.complete}
+        return note
+      })
     default:
       return state
   }
